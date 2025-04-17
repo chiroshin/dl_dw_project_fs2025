@@ -167,52 +167,6 @@ class NutritionScraper:
             print(f"Error during data extraction: {e}")
             return pd.DataFrame()
 
-
-# scraping function for main Vitamin & Mineral values
-class Scraper:
-    """
-    Base class to initialize the Selenium WebDriver and provide functions for scraping.
-    """
-
-    def __init__(self, url):
-        """
-        Initialize the Scraper with the target URL and sets up the WebDriver.
-
-        Args:
-        url (str): The URL to start scraping from.
-        """
-        self.url = url
-        self.driver = self._init_driver()
-
-    @staticmethod
-    def _init_driver():
-        """
-        Initializes the Chrome WebDriver with the necessary options.
-
-        Returns:
-        WebDriver: The initialized Chrome WebDriver instance.
-        """
-        chrome_options = Options()
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        return webdriver.Chrome(options=chrome_options)
-
-    def open_page(self, url):
-        """
-        Opens a given URL in the WebDriver.
-
-        Args:
-        url (str): The URL to open.
-        """
-        self.driver.get(url)
-        print(f"URL Page: {url}")
-        time.sleep(2)  # wait for the page to load
-
-    def close(self):
-        """Closes the WebDriver."""
-        self.driver.quit()
-
-
 # extract table nutrition (ATTENTION - Take around 40s to run this CODE)
 NutritionScraper = NutritionScraper(url_nutritionTable)
 df_NutritionTable = NutritionScraper.main()
