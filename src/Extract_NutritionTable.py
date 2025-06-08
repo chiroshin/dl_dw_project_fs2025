@@ -167,6 +167,8 @@ class NutritionScraper:
             print(f"Error during data extraction: {e}")
             return pd.DataFrame()
 
-# extract table nutrition (ATTENTION - Take around 40s to run this CODE)
+# extract table nutrition
 NutritionScraper = NutritionScraper(url_nutritionTable)
 df_NutritionTable = NutritionScraper.main()
+
+df_NutritionTable.to_csv('nutritionTable.csv', sep=';', encoding='utf-8', index=False)
